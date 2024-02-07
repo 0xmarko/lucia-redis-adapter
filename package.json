@@ -1,0 +1,35 @@
+{
+  "name": "lucia-adapter-redis",
+  "version": "0.0.0",
+  "description": "Redis adapter for Lucia",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsup --env.DEV",
+    "build": "tsup",
+    "test": "bun test",
+    "lint": "biome check --apply ."
+  },
+  "author": "0xmarko",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xmarko/lucia-redis-adapter"
+  },
+  "keywords": ["lucia", "auth", "redis", "adapter"],
+  "peerDependencies": {
+    "lucia": "3.x",
+    "redis": "4.6.x"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@types/node": "^20.11.16",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}
