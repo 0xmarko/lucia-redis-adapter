@@ -69,7 +69,7 @@ export async function testAdapter(adapter: Adapter) {
       },
     };
     await adapter.setSession(expiredSession);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 10));
     await adapter.deleteExpiredSessions();
     const result = await adapter.getUserSessions(databaseSession.userId);
     assert.deepStrictEqual(result, [databaseSession]);

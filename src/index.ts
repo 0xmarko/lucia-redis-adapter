@@ -33,12 +33,12 @@ export class RedisAdapter implements Adapter {
 
   async deleteUserSessions(userId: string): Promise<void> {
     const sessionIds = await this.redis.sMembers(this.userSessionsKey(userId));
-    const multi = this.redis.multi();
+    const transaction = this.redis.multi();
     for (const sessionId of sessionIds) {
-      multi.del(this.sessionKey(sessionId));
+      transaction.del(this.sessionKey(sessionId));
     }
-    multi.del(this.userSessionsKey(userId));
-    await multi.exec();
+    transaction.del(this.userSessionsKey(userId));
+    await transaction.exec();
   }
 
   async getSessionAndUser(
@@ -73,7 +73,7 @@ export class RedisAdapter implements Adapter {
     await this.redis
       .multi()
       .set(this.sessionKey(session.id), JSON.stringify(session), {
-        EX: this.getSecondsUntil(session.expiresAt),
+        PX: this.getMillisecondsUntil(session.expiresAt),
       })
       .sAdd(this.userSessionsKey(session.userId), session.id)
       .exec();
@@ -88,14 +88,14 @@ export class RedisAdapter implements Adapter {
     const session = this.transformIntoDatabaseSession(sessionString);
     session.expiresAt = expiresAt;
     await this.redis.set(this.sessionKey(sessionId), JSON.stringify(session), {
-      EX: this.getSecondsUntil(expiresAt),
+      PX: this.getMillisecondsUntil(expiresAt),
     });
   }
 
   public async deleteExpiredSessions(): Promise<void> {}
 
-  private getSecondsUntil(expiresAt: Date): number {
-    return Math.max(1, Math.floor((expiresAt.getTime() - Date.now()) / 1000));
+  private getMillisecondsUntil(expiresAt: Date) {
+    return Math.max(1, expiresAt.getTime() - Date.now());
   }
 
   private sessionKey(sessionId: string) {
