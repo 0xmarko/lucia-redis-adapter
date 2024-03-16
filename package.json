@@ -6,7 +6,9 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": "./dist/index.js"
   },
@@ -21,15 +23,20 @@
     "type": "git",
     "url": "https://github.com/0xmarko/lucia-redis-adapter"
   },
-  "keywords": ["lucia", "auth", "redis", "adapter"],
+  "keywords": [
+    "lucia",
+    "auth",
+    "redis",
+    "adapter"
+  ],
   "peerDependencies": {
     "lucia": "3.x",
     "redis": "4.6.x"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.5.3",
-    "@types/node": "^20.11.16",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "@biomejs/biome": "^1.6.1",
+    "@types/node": "^20.11.28",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.2"
   }
 }
