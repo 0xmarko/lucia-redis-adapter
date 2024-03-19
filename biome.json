@@ -8,11 +8,11 @@
   },
   "linter": {
     "rules": {
+      "correctness": {
+        "noUnusedImports": "warn"
+      },
       "suspicious": {
         "noArrayIndexKey": "off"
-      },
-      "nursery": {
-        "noUnusedImports": "warn"
       }
     }
   },

@@ -3,7 +3,12 @@
 // https://github.com/lucia-auth/lucia/tree/main/packages/adapter-test
 
 import assert from 'node:assert/strict';
-import { Adapter, DatabaseSession, DatabaseUser, generateId } from 'lucia';
+import {
+  type Adapter,
+  type DatabaseSession,
+  type DatabaseUser,
+  generateId,
+} from 'lucia';
 
 export const databaseUser: DatabaseUser = {
   id: generateId(15),

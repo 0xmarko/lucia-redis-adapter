@@ -1,5 +1,5 @@
 import type { Adapter, DatabaseSession, DatabaseUser } from 'lucia';
-import {
+import type {
   RedisClientType,
   RedisFunctions,
   RedisModules,
